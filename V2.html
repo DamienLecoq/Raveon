@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raveon</title>
+    <link rel="stylesheet" href="V2.css">
+    <script src="https://kit.fontawesome.com/5df1c49769.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="background-image"></div>
+    <div class="light"></div>
+    <div id="lightsOffMode">
+        <div id="light-background">
+            <div class="light-point" id="light1">
+                <img class="star-image" src="Images/Star-Image.png" />
+            </div>
+            <div class="light-point" id="light2">
+                <img class="star-image" src="Images/Star-Image.png" />
+            </div>
+            <div class="light-point" id="light3">
+                <img class="star-image" src="Images/Star-Image.png" />
+            </div>
+            <div class="light-point" id="light4">
+                <img class="star-image" src="Images/Star-Image.png" />
+            </div>
+            <div class="light-point" id="light5">
+                <img class="star-image" src="Images/Star-Image.png" />
+            </div>
+            <div class="light-point" id="light6">
+                <img class="star-image" src="Images/Star-Image.png" />
+            </div>
+        </div>
+
+        <div id="lightsMiddlePart">
+            <img id="lightsOffText" src="Images/LIGHTSOFF.png" />
+            <div class="checkbox-wrapper-8">
+                <input type="checkbox" id="cb3-8" class="tgl tgl-skewed">
+                <label for="cb3-8" data-tg-on="ON" data-tg-off="OFF" class="tgl-btn" id="myButton"></label>
+            </div>
+        </div>
+    </div>
+
+    <div id="raveOnMode">
+        <div id="raveTopPart">
+            <h3 id="bookingText"><a id="bookingAlink" href="#">BOOKING</a></h3>
+            <h3 id="releasesText"><a id="releasesAlink" href="#">RELEASES</a></h3>
+        </div>
+        <div id="RaveMiddlePart">
+            <img id="raveOnText" src="Images/RaveOnText.png" />
+        </div>
+        <div id="RaveBottomPart">
+            <img id="raveonLogo" src="Images/RaveonLogo.png" alt="RAVEON">
+        </div>
+        <a href="https://fanlink.tv/raveon"><div id="popUp-Event">
+            <div id="bandeau">
+                <h3>NEXT SHOW !</h3>
+            </div>
+            <img src="Images/Event1.png"/>
+        </div></a>
+    </div>
+    <div id="releasesPart">
+        <iframe class="spotifySoundcloud" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6kMGigKMdjz4SuueTgmdkh?utm_source=generator" width="50%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe class="spotifySoundcloud" width="50%" height="352" scrolling="yes" frameborder="no"  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1868021656%3Fsecret_token%3Ds-jDmQcrhyMvn&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+    </div>
+    <div id="bookingPart">
+        <div id="DemosAndBookingParent">
+            <div class="DemosAndBooking">
+                <h3>Demos</h3>
+                <p><a href="mailto:itsraveon" class="mail">itsraveon@gmail.com</a></p>
+            </div>
+            <div id="verticalLine"></div>
+            <div class="DemosAndBooking">
+                <h3>Booking</h3>
+                <p><a href="mailto:Booking@itsraveon.com"  class="mail">Booking@itsraveon.com</a></p>
+            </div>
+        </div>
+        <div id="horizontalLine"></div>
+        <div id="MediasPartParent">
+            <h3>Social</h3>
+            <div id="social-menu">
+                <ul>
+                    <li><a href="https://www.instagram.com/itsraveon/?utm_source=ig_web_button_share_sheet" id="instagram"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#" id="spotify"><i class="fa fa-spotify"></i></a></li>
+                    <li><a href="https://www.tiktok.com/@itsraveon?_t=8ppVCX5lt8S&_r=1" id="tiktok"><i class="fa-brands fa-tiktok"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    <script type="module" src="V2.js"></script>
+</body>
+
+</html>
