@@ -180,3 +180,34 @@ bookingText.addEventListener("click", () => {
         }
     }
 })
+
+raveonLogo.addEventListener("click", () => {
+    if(releasesIsActive){
+        releasesIsActive = false;
+        releasesA.style.color = "";
+        releasesA.style.fontSize = "";
+        bookingA.style.pointerEvents = "";
+        popUpEvent.style.pointerEvents = ""; 
+        RaveMiddlePart.classList.remove("blurEffect");
+        backgroundImage.classList.remove("blurEffect");
+        popUpEvent.classList.remove("blurEffect");
+        for(let i = 0; i <= spotifySoundcloud.length - 1; i++){
+            spotifySoundcloud[i].classList.remove("fadeUpAndNotSkewAnim");
+            spotifySoundcloud[i].classList.add("fadeUpAndNotSkewAnimReverse");
+        }
+    }
+    if(bookingIsActive){
+        bookingIsActive = false;
+        bookingA.style.color = "";
+        bookingA.style.fontSize = "";
+        releasesA.style.pointerEvents = "";
+        BookingPart.style.pointerEvents = "";
+        popUpEvent.style.pointerEvents = ""; 
+        RaveMiddlePart.classList.remove("blurEffect");
+        backgroundImage.classList.remove("blurEffect");
+        popUpEvent.classList.remove("blurEffect");
+        BookingPart.classList.remove("bookingAnim");
+        BookingPart.classList.add("bookingAnimReverse");
+    }
+})
+
