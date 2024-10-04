@@ -504,7 +504,7 @@ body{
     margin-top: 5%;
     background-color: rgba(255, 136, 0, 0.79);
     width: 2px;
-    height: 95%;
+    height: 60%;
     overflow: visible;
 }
 
@@ -576,6 +576,9 @@ body{
 #social-menu ul li{
     margin-top: 5%;
     list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     overflow: visible;
 }
