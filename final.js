@@ -10,7 +10,6 @@ const raveonLogo = document.getElementById("raveonLogo");
 const lightbackground = document.getElementById("light-background");
 const releasesDiv = document.getElementById("releasesPart");
 const popUpEvent = document.getElementById("popUp-Event");
-console.log("caca");
 
 raveOnText.style.display = "none";
 lightsOffText.classList.add("simpleFadePlusTransformAnim");
