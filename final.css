@@ -6,6 +6,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Bill Corporate Medium';
+    src: url('fonts/billcorporatemedium.woff2') format('woff2'),
+         url('fonts/billcorporatemedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 *{
     margin: 0;
@@ -469,7 +476,7 @@ body{
     justify-content: space-around;
     align-items: center;
     position: absolute;
-    width: 40%;
+    width: 50%;
     height: 35%;
     top: 50%;
     left: 50%;
@@ -521,11 +528,13 @@ body{
 }
 
 .mail{
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 100;
     text-decoration: none;
     color: white;
     overflow: visible;
+    font-family: 'Bill Corporate Medium', sans-serif;
+
 }
 
 .mail:hover{
@@ -579,14 +588,12 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
     overflow: visible;
 }
 
 #social-menu ul li .fa,
 #social-menu ul li .fa-brands {
     font-size: 36px;
-    line-height: 55px;
     transition: .6s;
     color: #fff;
 }
@@ -602,9 +609,6 @@ body{
     width: 55px;
     height: 55px;
     border-radius: 50%;
-    border-color: #fff;
-    border-style: solid;
-    border-width: 1px;
     text-align: center;
     transition: .6s;
     box-shadow: 0 5px 4px rgba(0,0,0,.5);
@@ -615,17 +619,19 @@ body{
     transform: translate(0, -5px);
 }
 
-#social-menu ul li:nth-child(1) a:hover{
-    background-color: #E4405F;
+#social-menu ul li:nth-child(1) .fa:hover{
+    color: #C32AA3;
 }
 
-#social-menu ul li:nth-child(2) a:hover{
-    background-color: #09B83E;
+#social-menu ul li:nth-child(2) .fa:hover{
+    color: #09B83E;
 }
 
-#social-menu ul li:nth-child(3) a:hover{
-    background-color: #EE1D51;
+#social-menu ul li:nth-child(3) a:hover,
+#social-menu ul li:nth-child(3) .fa-brands:hover{
+    color: #00f2ea;
 }
+
 
 .blurEffect{
     filter: blur(5px);
@@ -960,7 +966,7 @@ body{
         height: 40px;
     }
     .mail{
-        font-size: 21px;
+        font-size: 20px;
     }
 }
 
@@ -969,7 +975,7 @@ body{
         width: 70%;
     }
     .mail{
-        font-size: 19px;
+        font-size: 18px;
     }
     .DemosAndBooking h3{
         font-size: 23px;
