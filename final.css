@@ -299,10 +299,8 @@ body{
 }
 
 #lightsOffText{
-    position: relative;
     color: white;
     width: 80%;
-    transform: translate(-50%, -50%);
 }
 
 .checkbox-wrapper-8{
@@ -659,7 +657,7 @@ body{
 }
 
 .fadeInAnimation{
-    animation: fadeIn 1s forwards ease-out;
+    animation: fadeIn 2.5s forwards ease-out;
 }
 
 .simpleFadeAnimation{
@@ -774,10 +772,12 @@ body{
 
 @keyframes fadeIn {
     from{
-        transform: scale(0);
+        transform: scale(1.2);
+        opacity: 0;
     }
     to{
         transform: scale(1.5);
+        opacity: 1;
     }
 }
 
