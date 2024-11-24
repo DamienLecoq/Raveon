@@ -406,7 +406,7 @@ body{
     position: relative;
     width: 100%;
     height: 10%;
-    background: linear-gradient(90deg, rgb(78, 199, 255) 0%, rgb(0, 0, 0) 100%);
+    background: linear-gradient(90deg, rgb(201, 0, 0) 0%, rgb(65, 0, 0) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
