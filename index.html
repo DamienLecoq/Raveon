@@ -2,110 +2,143 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google" value="notranslate" />  
-    <title>Raveon</title>
-    <link rel="stylesheet" href="final.css">
-    <link rel="shortcut icon" typer="x-icon" href="Images/LightsOffLabel.png">
-    <script src="https://kit.fontawesome.com/5df1c49769.js" crossorigin="anonymous"></script>
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1217212946195978');
-        fbq('track', 'PageView');
-        </script>
-        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1217212946195978&ev=PageView&noscript=1"/></noscript>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" value="notranslate" />
+  <title>Raveon</title>
+  <link rel="stylesheet" href="final.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="Images/LightsOffLabel.png" />
+  <script src="https://kit.fontawesome.com/5df1c49769.js" crossorigin="anonymous"></script>
+
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1217212946195978');
+    fbq('track','PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1217212946195978&ev=PageView&noscript=1" />
+  </noscript>
 </head>
 
 <body>
-    <div id="background-image"></div>
-    <div class="light"></div>
-    <div id="lightsOffMode">
-        <div id="light-background">
-            <div class="light-point" id="light1">
-                <img class="star-image" src="Images/Star-Image.png" />
-            </div>
-            <div class="light-point" id="light2">
-                <img class="star-image" src="Images/Star-Image.png" />
-            </div>
-            <div class="light-point" id="light3">
-                <img class="star-image" src="Images/Star-Image.png" />
-            </div>
-            <div class="light-point" id="light4">
-                <img class="star-image" src="Images/Star-Image.png" />
-            </div>
-            <div class="light-point" id="light5">
-                <img class="star-image" src="Images/Star-Image.png" />
-            </div>
-            <div class="light-point" id="light6">
-                <img class="star-image" src="Images/Star-Image.png" />
-            </div>
-        </div>
 
-        <div id="lightsMiddlePart">
-            <img id="lightsOffText" src="Images/LIGHTSOFF.png" />
-            <div class="checkbox-wrapper-8">
-                <input type="checkbox" id="cb3-8" class="tgl tgl-skewed">
-                <label for="cb3-8" data-tg-on="ON" data-tg-off="OFF" class="tgl-btn" id="myButton"></label>
-            </div>
-        </div>
+  <!-- Fond avec parallaxe -->
+  <div id="background-image"></div>
+  <!-- Overlay spotlight curseur -->
+  <div class="light"></div>
+
+  <!-- ===================== ECRAN LIGHTS OFF ===================== -->
+  <div id="lightsOffMode">
+
+    <div id="light-background">
+      <div class="light-point" id="light1"><img class="star-image" src="" /></div>
+      <div class="light-point" id="light2"><img class="star-image" src="" /></div>
+      <div class="light-point" id="light3"><img class="star-image" src="" /></div>
+      <div class="light-point" id="light4"><img class="star-image" src="" /></div>
+      <div class="light-point" id="light5"><img class="star-image" src="" /></div>
+      <div class="light-point" id="light6"><img class="star-image" src="" /></div>
     </div>
 
-    <div id="raveOnMode">
-        <div id="raveTopPart">
-            <h3 id="bookingText"><a id="bookingAlink" class="notranslate" href="#" >BOOKING</a></h3>
-            <h3 id="releasesText"><a id="releasesAlink" class="notranslate" href="#">RELEASES</a></h3>
-        </div>
-        <div id="RaveMiddlePart">
-            <img id="raveOnText" src="Images/RaveOnText.png" />
-        </div>
-        <div id="RaveBottomPart">
-            <img id="raveonLogo" src="Images/RaveonLogo.png" alt="RAVEON">
-        </div>
-        <a href="https://shotgun.live/events/lights-off-rave-on-3"><div id="popUp-Event">
-            <div id="bandeau">
-                <h3 class="notranslate">NEXT SHOW !</h3>
-            </div>
-            <img src="Images/LightsOff3.png"/>
-        </div></a>
+    <div id="lightsMiddlePart">
+      <img id="lightsOffText" src="" alt="Lights Off" />
+      <div class="checkbox-wrapper-8">
+        <input type="checkbox" id="cb3-8" class="tgl tgl-skewed" />
+        <label for="cb3-8" data-tg-on="ON" data-tg-off="OFF" class="tgl-btn" id="myButton"></label>
+      </div>
     </div>
-    <div id="releasesPart">
-        <iframe class="spotifySoundcloud" style="border-radius:10px" src="https://open.spotify.com/embed/playlist/0JL22R7eyreuieZT05X3qS?utm_source=generator&theme=0" width="50%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        <iframe class="spotifySoundcloud" style="border-radius:10px" width="50%" height="352" scrolling="yes" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1884909305&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+
+  </div>
+
+  <!-- ===================== ECRAN RAVE ON ===================== -->
+  <div id="raveOnMode">
+
+    <div id="raveTopPart">
+      <h3 id="bookingText">
+        <a id="bookingAlink" class="notranslate" href="#"></a>
+      </h3>
+      <h3 id="releasesText">
+        <a id="releasesAlink" class="notranslate" href="#"></a>
+      </h3>
     </div>
-    <div id="bookingPart">
-        <div id="DemosAndBookingParent">
-            <div class="DemosAndBooking">
-                <h3 class="notranslate">Demos</h3>
-                <p><a href="mailto:itsraveon" class="mail">itsraveon@gmail.com</a></p>
-            </div>
-            <div id="verticalLine"></div>
-            <div class="DemosAndBooking">
-                <h3 class="notranslate">Booking</h3>
-                <p><a href="mailto:bookingraveon@gmail.com"  class="mail">bookingraveon@gmail.com</a></p>
-            </div>
-        </div>
-        <div id="horizontalLine"></div>
-        <div id="MediasPartParent">
-            <h3 class="notranslate">Socials</h3>
-            <div id="social-menu">
-                <ul>
-                    <li><a href="https://www.instagram.com/itsraveon/?utm_source=ig_web_button_share_sheet" id="instagram"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="https://open.spotify.com/artist/09CHL623Gn4FFPy0dHv4XC?si=qx0AKcrwSzaKC5wkc8lvpQ" id="spotify"><i class="fa fa-spotify"></i></a></li>
-                    <li><a href="https://www.tiktok.com/@itsraveon?_t=8ppVCX5lt8S&_r=1" id="tiktok"><i class="fa-brands fa-tiktok"></i></a></li>
-                </ul>
-            </div>
-        </div>
-        
+
+    <div id="RaveMiddlePart">
+      <img id="raveOnText" src="" alt="Rave On" />
     </div>
-    <script type="module" src="final.js"></script>
+
+    <div id="RaveBottomPart">
+      <img id="raveonLogo" src="" alt="RAVEON" />
+    </div>
+
+    <!-- Pop-up prochain evenement -->
+    <a id="nextShowLink" href="#">
+      <div id="popUp-Event">
+        <div id="bandeau">
+          <h3 id="nextShowLabel" class="notranslate"></h3>
+        </div>
+        <img id="popUpFlyer" src="" alt="Prochain evenement" />
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ===================== PANNEAU RELEASES ===================== -->
+  <div id="releasesPart">
+    <iframe
+      id="spotifyEmbed"
+      class="spotifySoundcloud"
+      style="border-radius:10px"
+      src=""
+      width="50%" height="352" frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
+    <iframe
+      id="soundcloudEmbed"
+      class="spotifySoundcloud"
+      style="border-radius:10px"
+      width="50%" height="352"
+      scrolling="yes" frameborder="no"
+      src="">
+    </iframe>
+  </div>
+
+  <!-- ===================== PANNEAU BOOKING ===================== -->
+  <div id="bookingPart">
+
+    <div id="DemosAndBookingParent">
+      <div class="DemosAndBooking">
+        <h3 id="demosTitle" class="notranslate"></h3>
+        <p><a id="demosEmail" href="#" class="mail"></a></p>
+      </div>
+      <div id="verticalLine"></div>
+      <div class="DemosAndBooking">
+        <h3 id="bookingTitle" class="notranslate"></h3>
+        <p><a id="bookingEmail" href="#" class="mail"></a></p>
+      </div>
+    </div>
+
+    <div id="horizontalLine"></div>
+
+    <div id="MediasPartParent">
+      <h3 id="socialsTitle" class="notranslate"></h3>
+      <div id="social-menu">
+        <ul>
+          <li><a id="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+          <li><a id="spotify"   href="#"><i class="fa fa-spotify"></i></a></li>
+          <li><a id="tiktok"    href="#"><i class="fa-brands fa-tiktok"></i></a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="final.js"></script>
 </body>
 
 </html>

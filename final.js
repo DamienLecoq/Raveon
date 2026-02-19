@@ -1,212 +1,203 @@
-var pos = document.documentElement;
-const lightsOffText = document.getElementById("lightsOffText");
-const boutonLightsOff = document.getElementById("myButton");
-const lightsOffDiv = document.getElementById("lightsOffMode");
-const raveOnDiv = document.getElementById("raveOnMode");
-const raveOnText = document.getElementById("raveOnText");
-const bookingText = document.getElementById("bookingText");
-const releasesText = document.getElementById("releasesText");
-const raveonLogo = document.getElementById("raveonLogo");
-const lightbackground = document.getElementById("light-background");
-const releasesDiv = document.getElementById("releasesPart");
-const popUpEvent = document.getElementById("popUp-Event");
+import { TIMINGS, ACTIVE_LINK_STYLE, IMAGES, LINKS, EMAILS, EMBEDS, TEXTS, COLORS } from "./constants.js";
 
+// --- Sélection des éléments DOM ---
+const root           = document.documentElement;
+const lightsOffText  = document.getElementById("lightsOffText");
+const boutonLightsOff= document.getElementById("myButton");
+const lightsOffDiv   = document.getElementById("lightsOffMode");
+const raveOnDiv      = document.getElementById("raveOnMode");
+const raveOnText     = document.getElementById("raveOnText");
+const bookingText    = document.getElementById("bookingText");
+const releasesText   = document.getElementById("releasesText");
+const raveonLogo     = document.getElementById("raveonLogo");
+const lightBackground= document.getElementById("light-background");
+const releasesDiv    = document.getElementById("releasesPart");
+const popUpEvent     = document.getElementById("popUp-Event");
+const backgroundImage= document.getElementById("background-image");
+const RaveMiddlePart = document.getElementById("RaveMiddlePart");
+const BookingPart    = document.getElementById("bookingPart");
+const spotifySoundcloud = document.querySelectorAll(".spotifySoundcloud");
+const bookingA       = document.getElementById("bookingAlink");
+const releasesA      = document.getElementById("releasesAlink");
+
+// --- Injection des constantes dans le DOM ---
+function applyConstants() {
+  document.getElementById("lightsOffText").src  = IMAGES.lightsOffText;
+  document.getElementById("raveOnText").src      = IMAGES.raveOnText;
+  document.getElementById("raveonLogo").src      = IMAGES.raveonLogo;
+  document.getElementById("popUpFlyer").src      = IMAGES.nextShowFlyer;
+  document.querySelectorAll(".star-image").forEach(el => el.src = IMAGES.star);
+
+  document.getElementById("nextShowLink").href   = LINKS.nextShow;
+  document.getElementById("instagram").href      = LINKS.instagram;
+  document.getElementById("spotify").href        = LINKS.spotify;
+  document.getElementById("tiktok").href         = LINKS.tiktok;
+
+  const demosLink   = document.getElementById("demosEmail");
+  demosLink.href        = `mailto:${EMAILS.demos}`;
+  demosLink.textContent = EMAILS.demos;
+
+  const bookingLink = document.getElementById("bookingEmail");
+  bookingLink.href        = `mailto:${EMAILS.booking}`;
+  bookingLink.textContent = EMAILS.booking;
+
+  document.getElementById("spotifyEmbed").src    = EMBEDS.spotify;
+  document.getElementById("soundcloudEmbed").src = EMBEDS.soundcloud;
+
+  document.getElementById("bookingAlink").textContent  = TEXTS.booking;
+  document.getElementById("releasesAlink").textContent = TEXTS.releases;
+  document.getElementById("nextShowLabel").textContent = TEXTS.nextShowLabel;
+  document.getElementById("demosTitle").textContent    = TEXTS.demos;
+  document.getElementById("bookingTitle").textContent  = TEXTS.bookingTitle;
+  document.getElementById("socialsTitle").textContent  = TEXTS.socials;
+
+  // --- Variables CSS ---
+  const root = document.documentElement;
+  root.style.setProperty("--bandeau-from", COLORS.bandeauFrom);
+  root.style.setProperty("--bandeau-to",   COLORS.bandeauTo);
+}
+
+applyConstants();
+
+// --- État de la navigation ---
+let releasesIsActive = false;
+let bookingIsActive  = false;
+
+// --- Effet spotlight (curseur) — desktop uniquement ---
+const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+if (!isTouchDevice) {
+  root.addEventListener("mousemove", (e) => {
+    root.style.setProperty("--x", e.clientX + "px");
+    root.style.setProperty("--y", e.clientY + "px");
+  });
+}
+
+// --- Effet parallaxe sur l'image de fond ---
+document.addEventListener("mousemove", (e) => {
+  const moveX = (e.clientX / window.innerWidth  - 0.5) * 35;
+  const moveY = (e.clientY / window.innerHeight - 0.5) * 35;
+  backgroundImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
+});
+
+// --- Séquence d'intro : Lights Off → Rave On ---
 raveOnText.style.display = "none";
 lightsOffText.classList.add("simpleFadePlusTransformAnim");
 
-pos.addEventListener('mousemove', e =>{
-        pos.style.setProperty('--x', e.clientX + 'px');
-        pos.style.setProperty('--y', e.clientY + 'px');
-});
-
-setTimeout(()=> {
-    boutonLightsOff.style.display = "inline-block";
-    boutonLightsOff.classList.add("fadeUpAnimation");
-}, 1000);
+setTimeout(() => {
+  boutonLightsOff.style.display = "inline-block";
+  boutonLightsOff.classList.add("fadeUpAnimation");
+}, TIMINGS.buttonAppear);
 
 boutonLightsOff.addEventListener("click", () => {
-    lightsOffText.classList.remove("simpleFadePlusTransformAnim");
-    boutonLightsOff.classList.remove("fadeUpAnimation");
+  // Animations de sortie (Lights Off)
+  lightsOffText.classList.remove("simpleFadePlusTransformAnim");
+  lightsOffText.classList.add("fadeOutAnimation");
+  boutonLightsOff.classList.remove("fadeUpAnimation");
+  boutonLightsOff.classList.add("fadeOuAndSkewtAnimation");
+  lightBackground.classList.add("simpleFadeReverseAnimation");
 
-    lightsOffText.classList.add("fadeOutAnimation")
-    boutonLightsOff.classList.add("fadeOuAndSkewtAnimation");
+  // Apparition du texte Rave On
+  setTimeout(() => {
+    raveOnText.style.display = "inline-block";
+    raveOnText.classList.add("fadeInAnimation");
+    raveOnDiv.style.zIndex = 2;
+    releasesDiv.style.zIndex = 3;
+  }, TIMINGS.raveOnTextAppear);
 
-    lightbackground.classList.add("simpleFadeReverseAnimation")
+  // Masquage des éléments Lights Off + apparition des éléments Rave On
+  setTimeout(() => {
+    lightsOffText.style.display = "none";
+    boutonLightsOff.style.display = "none";
 
-    setTimeout(() => {
-        raveOnText.style.display = "inline-block";
-        raveOnText.classList.add("fadeInAnimation")
-        raveOnDiv.style.zIndex = 2;
-        releasesDiv.style.zIndex = 3;
-    }, 1000);
+    [raveonLogo, bookingText, releasesText].forEach((el) => {
+      el.style.display = "inline-block";
+      el.classList.add("simpleFadeAnimation");
+    });
 
-    setTimeout(() => {
-        lightsOffText.style.display = "none";
-        boutonLightsOff.style.display = "none";
-    }, 2000);
+    lightsOffDiv.classList.add("opacityToZeroAnimation");
+  }, TIMINGS.lightsOffHide);
 
-    setTimeout(() => {
-        raveonLogo.style.display = "inline-block";
-        bookingText.style.display = "inline-block";
-        releasesText.style.display = "inline-block";
-        bookingText.classList.add("simpleFadeAnimation");
-        releasesText.classList.add("simpleFadeAnimation");
-        raveonLogo.classList.add("simpleFadeAnimation");
-    }, 2000);
+  // Pop-up événement
+  setTimeout(() => {
+    popUpEvent.classList.add("popUpAnimation");
+  }, TIMINGS.popUpAppear);
 
-    setTimeout(()=>{
-        lightsOffDiv.classList.add("opacityToZeroAnimation")
-    }, 2000);
-
-    setTimeout(()=>{
-        popUpEvent.classList.add("popUpAnimation");
-    }, 2500);
-
-    setTimeout(()=>{
-        lightsOffDiv.style.display = "none";
-    }, 5000);
-    
-
-    
-
-})
-
-document.addEventListener('mousemove', function(e) {
-    const posX = e.clientX / window.innerWidth;
-    const posY = e.clientY / window.innerHeight;
-    const backgroundImage = document.getElementById('background-image');
-    
-    const moveX = (posX - 0.5) * 35;
-    const moveY = (posY - 0.5) * 35;
-
-    backgroundImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  // Suppression finale du div Lights Off
+  setTimeout(() => {
+    lightsOffDiv.style.display = "none";
+  }, TIMINGS.lightsOffRemove);
 });
 
+// --- Helpers navigation ---
 
-/*Play Music Part*/
+/** Active ou désactive l'effet de flou sur les éléments de fond */
+function setBlur(active) {
+  RaveMiddlePart.classList.toggle("blurEffect", active);
+  backgroundImage.classList.toggle("blurEffect", active);
+  popUpEvent.classList.toggle("blurEffect", active);
+  popUpEvent.style.pointerEvents = active ? "none" : "";
+}
 
-const RaveMiddlePart = document.getElementById("RaveMiddlePart");
-const RaveBottomPart = document.getElementById("RaveBottomPart");
-const backgroundImage = document.getElementById("background-image");
-const spotifySoundcloud = document.querySelectorAll(".spotifySoundcloud");
-const bookingA = document.getElementById("bookingAlink");
-const releasesA = document.getElementById("releasesAlink");
+/** Ouvre/ferme le panneau Releases */
+function toggleReleases(forceClose = false) {
+  if (forceClose || releasesIsActive) {
+    releasesIsActive = false;
+    releasesA.style.color = "";
+    releasesA.style.fontSize = "";
+    bookingA.style.pointerEvents = "";
+    setBlur(false);
+    spotifySoundcloud.forEach((el) => {
+      el.classList.remove("fadeUpAndNotSkewAnim");
+      el.classList.add("fadeUpAndNotSkewAnimReverse");
+    });
+  } else {
+    releasesIsActive = true;
+    releasesA.style.color    = ACTIVE_LINK_STYLE.color;
+    releasesA.style.fontSize = ACTIVE_LINK_STYLE.fontSize;
+    setBlur(true);
+    spotifySoundcloud.forEach((el) => {
+      el.classList.remove("fadeUpAndNotSkewAnimReverse");
+      el.classList.add("fadeUpAndNotSkewAnim");
+    });
+  }
+}
 
-const AdressesPart = document.getElementById("adresses");
+/** Ouvre/ferme le panneau Booking */
+function toggleBooking(forceClose = false) {
+  if (forceClose || bookingIsActive) {
+    bookingIsActive = false;
+    bookingA.style.color = "";
+    bookingA.style.fontSize = "";
+    releasesA.style.pointerEvents = "";
+    BookingPart.style.pointerEvents = "";
+    setBlur(false);
+    BookingPart.classList.remove("bookingAnim");
+    BookingPart.classList.add("bookingAnimReverse");
+  } else {
+    bookingIsActive = true;
+    bookingA.style.color    = ACTIVE_LINK_STYLE.color;
+    bookingA.style.fontSize = ACTIVE_LINK_STYLE.fontSize;
+    BookingPart.style.pointerEvents = "all";
+    setBlur(true);
+    BookingPart.classList.remove("bookingAnimReverse");
+    BookingPart.classList.add("bookingAnim");
+  }
+}
 
-const BookingPart = document.getElementById("bookingPart");
-
-
-let releasesIsActive = false;
-let bookingIsActive = false;
-
-releasesText.addEventListener("click", () =>{
-    if(releasesIsActive){
-        releasesIsActive = false;
-        releasesA.style.color = "";
-        releasesA.style.fontSize = "";
-        bookingA.style.pointerEvents = "";
-        popUpEvent.style.pointerEvents = ""; 
-        RaveMiddlePart.classList.remove("blurEffect");
-        backgroundImage.classList.remove("blurEffect");
-        popUpEvent.classList.remove("blurEffect");
-        for(let i = 0; i <= spotifySoundcloud.length - 1; i++){
-            spotifySoundcloud[i].classList.remove("fadeUpAndNotSkewAnim");
-            spotifySoundcloud[i].classList.add("fadeUpAndNotSkewAnimReverse");
-        }
-    }
-    else{
-        releasesIsActive = true;
-        releasesA.style.color = "rgba(230, 157, 0, 1)";
-        releasesA.style.fontSize = "16px";
-        popUpEvent.style.pointerEvents = "none"; 
-        RaveMiddlePart.classList.add("blurEffect");
-        backgroundImage.classList.add("blurEffect");
-        popUpEvent.classList.add("blurEffect");
-        for(let i = 0; i <= spotifySoundcloud.length - 1; i++){
-            spotifySoundcloud[i].classList.remove("fadeUpAndNotSkewAnimReverse");
-            spotifySoundcloud[i].classList.add("fadeUpAndNotSkewAnim");
-        }
-    }
-    if(bookingIsActive){
-        bookingIsActive = false;
-        bookingA.style.color = "";
-        bookingA.style.fontSize = "";
-        releasesA.style.pointerEvents = "";
-        BookingPart.style.pointerEvents = "";
-        popUpEvent.style.pointerEvents = ""; 
-        BookingPart.classList.remove("bookingAnim");
-        BookingPart.classList.add("bookingAnimReverse");
-    }
-})
-
+// --- Écouteurs de navigation ---
+releasesText.addEventListener("click", () => {
+  if (bookingIsActive) toggleBooking(true);
+  toggleReleases();
+});
 
 bookingText.addEventListener("click", () => {
-    if (!bookingIsActive){
-        bookingIsActive = true;
-        bookingA.style.color = "rgba(230, 157, 0, 1)";
-        bookingA.style.fontSize = "16px";
-        BookingPart.style.pointerEvents = "all";
-        popUpEvent.style.pointerEvents = "none"; 
-        RaveMiddlePart.classList.add("blurEffect");
-        backgroundImage.classList.add("blurEffect");
-        popUpEvent.classList.add("blurEffect");
-        BookingPart.classList.remove("bookingAnimReverse");
-        BookingPart.classList.add("bookingAnim");  
-    }
-    else{
-        bookingIsActive = false;
-        bookingA.style.color = "";
-        bookingA.style.fontSize = "";
-        releasesA.style.pointerEvents = "";
-        BookingPart.style.pointerEvents = "";
-        popUpEvent.style.pointerEvents = ""; 
-        RaveMiddlePart.classList.remove("blurEffect");
-        backgroundImage.classList.remove("blurEffect");
-        popUpEvent.classList.remove("blurEffect");
-        BookingPart.classList.remove("bookingAnim");
-        BookingPart.classList.add("bookingAnimReverse");
-    }
-    if(releasesIsActive){
-        releasesIsActive = false;
-        releasesA.style.color = "";
-        releasesA.style.fontSize = "";
-        bookingA.style.pointerEvents = "";
-        popUpEvent.style.pointerEvents = ""; 
-        for(let i = 0; i <= spotifySoundcloud.length; i++){
-            spotifySoundcloud[i].classList.remove("fadeUpAndNotSkewAnim");
-            spotifySoundcloud[i].classList.add("fadeUpAndNotSkewAnimReverse");
-        }
-    }
-})
+  if (releasesIsActive) toggleReleases(true);
+  toggleBooking();
+});
 
+// Clic sur le logo = ferme tout
 raveonLogo.addEventListener("click", () => {
-    if(releasesIsActive){
-        releasesIsActive = false;
-        releasesA.style.color = "";
-        releasesA.style.fontSize = "";
-        bookingA.style.pointerEvents = "";
-        popUpEvent.style.pointerEvents = ""; 
-        RaveMiddlePart.classList.remove("blurEffect");
-        backgroundImage.classList.remove("blurEffect");
-        popUpEvent.classList.remove("blurEffect");
-        for(let i = 0; i <= spotifySoundcloud.length - 1; i++){
-            spotifySoundcloud[i].classList.remove("fadeUpAndNotSkewAnim");
-            spotifySoundcloud[i].classList.add("fadeUpAndNotSkewAnimReverse");
-        }
-    }
-    if(bookingIsActive){
-        bookingIsActive = false;
-        bookingA.style.color = "";
-        bookingA.style.fontSize = "";
-        releasesA.style.pointerEvents = "";
-        BookingPart.style.pointerEvents = "";
-        popUpEvent.style.pointerEvents = ""; 
-        RaveMiddlePart.classList.remove("blurEffect");
-        backgroundImage.classList.remove("blurEffect");
-        popUpEvent.classList.remove("blurEffect");
-        BookingPart.classList.remove("bookingAnim");
-        BookingPart.classList.add("bookingAnimReverse");
-    }
-})
-
+  if (releasesIsActive) toggleReleases(true);
+  if (bookingIsActive)  toggleBooking(true);
+});
