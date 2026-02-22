@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'CouragesDemo';
+    font-family: 'Atmospheric';
     src: url('fonts/aAtmospheric.woff2') format('woff2'),
          url('fonts/aAtmospheric.woff') format('woff');
     font-weight: normal;
@@ -278,7 +278,7 @@ body{
         width: 2px;
         height: 2px;
         box-shadow: 
-            0 0 50px 15px rgb(255, 187, 0.1),
+            0 0 50px 15px rgba(255, 187, 0, 0.1),
             0 0 60px 30px rgba(219, 190, 93, 0.4),
             0 0 80px 60px rgba(233, 224, 195, 0.2);
     }
@@ -376,7 +376,7 @@ body{
     position: relative;
     text-decoration: none;
     font-size: 14px;
-    font-family: 'CouragesDemo', sans-serif;
+    font-family: 'Atmospheric', sans-serif;
 }
 
 #raveTopPart a:hover {
@@ -459,7 +459,7 @@ body{
     color: white;
     font-weight: 900;
     font-size: 18px;
-    font-family: 'CouragesDemo', sans-serif;
+    font-family: 'Atmospheric', sans-serif;
 }
 
 #popUp-Event img{
@@ -570,7 +570,7 @@ body{
     color:orange;
     font-weight: 800;
     font-size: 26px;
-    font-family: 'CouragesDemo', sans-serif;
+    font-family: 'Atmospheric', sans-serif;
     overflow: visible;
 }
 
@@ -589,7 +589,7 @@ body{
     height: 100%;
     font-weight: 800;
     font-size: 26px;
-    font-family: 'CouragesDemo', sans-serif;
+    font-family: 'Atmospheric', sans-serif;
 }
 
 #social-menu ul{

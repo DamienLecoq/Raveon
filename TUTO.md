@@ -1,12 +1,10 @@
 # 🎛️ Tutoriel — Modifier le site de Raveon
 
-> Pas besoin de savoir coder. Suis les étapes dans l'ordre et tout ira bien 🙂
-
----
+> Je te conseille de le lire au moins 1 fois en entier avant de faire n'importe quoi my cousin :)
 
 ## 1. Récupérer la dernière version du projet
 
-Avant toute modification, assure-toi d'avoir la version la plus récente du site.
+**Avant toute modification**, assure-toi d'avoir la version la plus récente du site.
 
 1. Fais un **clic droit** dans ton dossier `SiteRaveon`
 2. Clique sur **"Ouvrir avec Visual Studio Code"**
@@ -16,7 +14,7 @@ Avant toute modification, assure-toi d'avoir la version la plus récente du site
    git pull
    ```
 
-✅ Le projet est à jour, tu peux commencer à modifier.
+Le projet est à jour, tu peux commencer à modifier.
 
 ---
 
@@ -28,7 +26,7 @@ Toutes les données modifiables (liens, images, textes, emails…) sont centrali
 2. Modifie les valeurs souhaitées
 3. Sauvegarde avec **Ctrl+S**
 
-> 💡 Tu n't as jamais besoin de toucher à `index.html` ou `final.js` pour une modification courante.
+> 💡 Tu n'as jamais besoin de toucher à `index.html`, `final.css` ou `final.js` pour faire des modifs.
 
 ---
 
@@ -49,8 +47,6 @@ Avant de mettre en ligne, vérifie que tout s'affiche correctement sur ta machin
 1. Effectue ta modification et sauvegarde (**Ctrl+S**)
 2. Clique sur **"Go Live"** en bas à droite de la fenêtre VS Code
 3. La page s'ouvre automatiquement dans ton navigateur — vérifie que tout est bon
-
-> ⚠️ Si le bouton "Go Live" n'apparaît pas, installe l'extension **Live Server** dans VS Code.
 
 ---
 
@@ -73,4 +69,4 @@ Une fois que tu es satisfait du résultat, publie les changements.
    git push
    ```
 
-✅ Les modifications sont en ligne !
+Les modifications sont en ligne !

@@ -52,7 +52,6 @@ function applyConstants() {
   document.getElementById("socialsTitle").textContent  = TEXTS.socials;
 
   // --- Variables CSS ---
-  const root = document.documentElement;
   root.style.setProperty("--bandeau-from", COLORS.bandeauFrom);
   root.style.setProperty("--bandeau-to",   COLORS.bandeauTo);
 }
@@ -73,12 +72,14 @@ if (!isTouchDevice) {
   });
 }
 
-// --- Effet parallaxe sur l'image de fond ---
-document.addEventListener("mousemove", (e) => {
-  const moveX = (e.clientX / window.innerWidth  - 0.5) * 35;
-  const moveY = (e.clientY / window.innerHeight - 0.5) * 35;
-  backgroundImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
-});
+// --- Effet parallaxe sur l'image de fond (desktop uniquement) ---
+if (!isTouchDevice) {
+  document.addEventListener("mousemove", (e) => {
+    const moveX = (e.clientX / window.innerWidth  - 0.5) * 35;
+    const moveY = (e.clientY / window.innerHeight - 0.5) * 35;
+    backgroundImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  });
+}
 
 // --- Séquence d'intro : Lights Off → Rave On ---
 raveOnText.style.display = "none";

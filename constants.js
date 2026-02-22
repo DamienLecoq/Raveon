@@ -58,7 +58,7 @@ export const TIMINGS = {
   lightsOffRemove:    5000,
 };
 
-// --- Couleurs du beandeau de la pop-up---
+// --- Couleurs du bandeau de la pop-up ---
 export const COLORS = {
   bandeauFrom: "rgb(201, 0, 0)",
   bandeauTo:   "rgb(65, 0, 0)",
