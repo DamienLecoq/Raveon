@@ -62,10 +62,27 @@ applyConstants();
 let releasesIsActive = false;
 let bookingIsActive  = false;
 
-// --- Effet spotlight (curseur) — desktop uniquement ---
-const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+/* =========================
+   DETECTION TACTILE + SPOTLIGHT
+   - Mobile: vignette seulement (pas de lampe)
+   - Desktop: spotlight souris
+   ========================= */
 
-if (!isTouchDevice) {
+// Détection tactile robuste (évite les différences entre émulation et vrai téléphone)
+const touchLike =
+  window.matchMedia("(hover: none), (pointer: coarse), (any-hover: none), (any-pointer: coarse)").matches ||
+  navigator.maxTouchPoints > 0 ||
+  "ontouchstart" in window;
+
+// Force une classe CSS pour le style mobile
+document.documentElement.classList.toggle("is-touch", touchLike);
+
+// Fallback : centre la lumière si jamais les variables ne sont pas définies
+root.style.setProperty("--x", "50%");
+root.style.setProperty("--y", "45%");
+
+// Spotlight souris (desktop uniquement)
+if (!touchLike) {
   root.addEventListener("mousemove", (e) => {
     root.style.setProperty("--x", e.clientX + "px");
     root.style.setProperty("--y", e.clientY + "px");
@@ -73,7 +90,7 @@ if (!isTouchDevice) {
 }
 
 // --- Effet parallaxe sur l'image de fond (desktop uniquement) ---
-if (!isTouchDevice) {
+if (!touchLike) {
   document.addEventListener("mousemove", (e) => {
     const moveX = (e.clientX / window.innerWidth  - 0.5) * 35;
     const moveY = (e.clientY / window.innerHeight - 0.5) * 35;
