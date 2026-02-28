@@ -45,13 +45,13 @@ const releasesA = document.getElementById("releasesAlink");
 
 function applyConstants() {
 
-  /* === META === */
+  /* META */
   document.title = META.siteTitle;
 
   const favicon = document.querySelector("link[rel='shortcut icon']");
   if (favicon) favicon.href = IMAGES.favicon;
 
-  /* === IMAGES === */
+  /* IMAGES */
   backgroundImage.style.backgroundImage = `url("${IMAGES.background}")`;
   lightsOffText.src = IMAGES.lightsOffText;
   raveOnText.src = IMAGES.raveOnText;
@@ -61,13 +61,13 @@ function applyConstants() {
   document.querySelectorAll(".star-image")
     .forEach(el => el.src = IMAGES.star);
 
-  /* === LIENS === */
+  /* LIENS */
   document.getElementById("nextShowLink").href = LINKS.nextShow;
   document.getElementById("instagram").href = LINKS.instagram;
   document.getElementById("spotify").href = LINKS.spotify;
   document.getElementById("tiktok").href = LINKS.tiktok;
 
-  /* === EMAILS === */
+  /* EMAILS */
   const demosLink = document.getElementById("demosEmail");
   demosLink.href = `mailto:${EMAILS.demos}`;
   demosLink.textContent = EMAILS.demos;
@@ -76,11 +76,11 @@ function applyConstants() {
   bookingLink.href = `mailto:${EMAILS.booking}`;
   bookingLink.textContent = EMAILS.booking;
 
-  /* === EMBEDS === */
+  /* EMBEDS */
   document.getElementById("spotifyEmbed").src = EMBEDS.spotify;
   document.getElementById("soundcloudEmbed").src = EMBEDS.soundcloud;
 
-  /* === TEXTES === */
+  /* TEXTES */
   bookingA.textContent = TEXTS.booking;
   releasesA.textContent = TEXTS.releases;
   document.getElementById("nextShowLabel").textContent = TEXTS.nextShowLabel;
@@ -88,7 +88,7 @@ function applyConstants() {
   document.getElementById("bookingTitle").textContent = TEXTS.bookingTitle;
   document.getElementById("socialsTitle").textContent = TEXTS.socials;
 
-  /* === COULEURS CSS === */
+  /* COULEURS CSS */
   root.style.setProperty("--bandeau-from", COLORS.bandeauFrom);
   root.style.setProperty("--bandeau-to", COLORS.bandeauTo);
 }
@@ -136,8 +136,12 @@ setTimeout(() => {
 
 boutonLightsOff.addEventListener("click", () => {
 
-  lightsOffText.classList.replace("simpleFadePlusTransformAnim", "fadeOutAnimation");
-  boutonLightsOff.classList.replace("fadeUpAnimation", "fadeOuAndSkewtAnimation");
+  lightsOffText.classList.remove("simpleFadePlusTransformAnim");
+  lightsOffText.classList.add("fadeOutAnimation");
+
+  boutonLightsOff.classList.remove("fadeUpAnimation");
+  boutonLightsOff.classList.add("fadeOuAndSkewtAnimation");
+
   lightBackground.classList.add("simpleFadeReverseAnimation");
 
   setTimeout(() => {
@@ -188,7 +192,8 @@ function toggleReleases(forceClose = false) {
     setBlur(false);
 
     spotifySoundcloud.forEach(el => {
-      el.classList.replace("fadeUpAndNotSkewAnim", "fadeUpAndNotSkewAnimReverse");
+      el.classList.remove("fadeUpAndNotSkewAnim");
+      el.classList.add("fadeUpAndNotSkewAnimReverse");
     });
 
   } else {
@@ -199,7 +204,8 @@ function toggleReleases(forceClose = false) {
     setBlur(true);
 
     spotifySoundcloud.forEach(el => {
-      el.classList.replace("fadeUpAndNotSkewAnimReverse", "fadeUpAndNotSkewAnim");
+      el.classList.remove("fadeUpAndNotSkewAnimReverse");
+      el.classList.add("fadeUpAndNotSkewAnim");
     });
   }
 }
@@ -213,7 +219,8 @@ function toggleBooking(forceClose = false) {
     bookingA.style.fontSize = "";
     setBlur(false);
 
-    BookingPart.classList.replace("bookingAnim", "bookingAnimReverse");
+    BookingPart.classList.remove("bookingAnim");
+    BookingPart.classList.add("bookingAnimReverse");
 
   } else {
 
@@ -222,12 +229,13 @@ function toggleBooking(forceClose = false) {
     bookingA.style.fontSize = ACTIVE_LINK_STYLE.fontSize;
     setBlur(true);
 
-    BookingPart.classList.replace("bookingAnimReverse", "bookingAnim");
+    BookingPart.classList.remove("bookingAnimReverse");
+    BookingPart.classList.add("bookingAnim");
   }
 }
 
 /* =========================
-   EVENTS NAVIGATION
+   EVENTS
 ========================= */
 
 releasesText.addEventListener("click", () => {
