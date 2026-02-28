@@ -1,87 +1,131 @@
-import { TIMINGS, ACTIVE_LINK_STYLE, IMAGES, LINKS, EMAILS, EMBEDS, TEXTS, COLORS } from "./constants.js";
+import {
+  TIMINGS,
+  ACTIVE_LINK_STYLE,
+  IMAGES,
+  LINKS,
+  EMAILS,
+  EMBEDS,
+  TEXTS,
+  COLORS,
+  META
+} from "./constants.js";
 
-// --- Sélection des éléments DOM ---
-const root           = document.documentElement;
-const lightsOffText  = document.getElementById("lightsOffText");
-const boutonLightsOff= document.getElementById("myButton");
-const lightsOffDiv   = document.getElementById("lightsOffMode");
-const raveOnDiv      = document.getElementById("raveOnMode");
-const raveOnText     = document.getElementById("raveOnText");
-const bookingText    = document.getElementById("bookingText");
-const releasesText   = document.getElementById("releasesText");
-const raveonLogo     = document.getElementById("raveonLogo");
-const lightBackground= document.getElementById("light-background");
-const releasesDiv    = document.getElementById("releasesPart");
-const popUpEvent     = document.getElementById("popUp-Event");
-const backgroundImage= document.getElementById("background-image");
+/* =========================
+   SÉLECTION DOM
+========================= */
+
+const root = document.documentElement;
+const backgroundImage = document.getElementById("background-image");
+
+const lightsOffText = document.getElementById("lightsOffText");
+const boutonLightsOff = document.getElementById("myButton");
+const lightsOffDiv = document.getElementById("lightsOffMode");
+
+const raveOnDiv = document.getElementById("raveOnMode");
+const raveOnText = document.getElementById("raveOnText");
+const raveonLogo = document.getElementById("raveonLogo");
+
+const bookingText = document.getElementById("bookingText");
+const releasesText = document.getElementById("releasesText");
+
+const lightBackground = document.getElementById("light-background");
+const releasesDiv = document.getElementById("releasesPart");
+const popUpEvent = document.getElementById("popUp-Event");
+
 const RaveMiddlePart = document.getElementById("RaveMiddlePart");
-const BookingPart    = document.getElementById("bookingPart");
+const BookingPart = document.getElementById("bookingPart");
+
 const spotifySoundcloud = document.querySelectorAll(".spotifySoundcloud");
-const bookingA       = document.getElementById("bookingAlink");
-const releasesA      = document.getElementById("releasesAlink");
+const bookingA = document.getElementById("bookingAlink");
+const releasesA = document.getElementById("releasesAlink");
 
-// --- Injection des constantes dans le DOM ---
+/* =========================
+   INJECTION DES CONSTANTES
+========================= */
+
 function applyConstants() {
-  document.getElementById("lightsOffText").src  = IMAGES.lightsOffText;
-  document.getElementById("raveOnText").src      = IMAGES.raveOnText;
-  document.getElementById("raveonLogo").src      = IMAGES.raveonLogo;
-  document.getElementById("popUpFlyer").src      = IMAGES.nextShowFlyer;
-  document.querySelectorAll(".star-image").forEach(el => el.src = IMAGES.star);
 
-  document.getElementById("nextShowLink").href   = LINKS.nextShow;
-  document.getElementById("instagram").href      = LINKS.instagram;
-  document.getElementById("spotify").href        = LINKS.spotify;
-  document.getElementById("tiktok").href         = LINKS.tiktok;
+  /* === META === */
+  document.title = META.siteTitle;
 
-  const demosLink   = document.getElementById("demosEmail");
-  demosLink.href        = `mailto:${EMAILS.demos}`;
+  const favicon = document.querySelector("link[rel='shortcut icon']");
+  if (favicon) favicon.href = IMAGES.favicon;
+
+  /* === IMAGES === */
+  backgroundImage.style.backgroundImage = `url("${IMAGES.background}")`;
+  lightsOffText.src = IMAGES.lightsOffText;
+  raveOnText.src = IMAGES.raveOnText;
+  raveonLogo.src = IMAGES.raveonLogo;
+  document.getElementById("popUpFlyer").src = IMAGES.nextShowFlyer;
+
+  document.querySelectorAll(".star-image")
+    .forEach(el => el.src = IMAGES.star);
+
+  /* === LIENS === */
+  document.getElementById("nextShowLink").href = LINKS.nextShow;
+  document.getElementById("instagram").href = LINKS.instagram;
+  document.getElementById("spotify").href = LINKS.spotify;
+  document.getElementById("tiktok").href = LINKS.tiktok;
+
+  /* === EMAILS === */
+  const demosLink = document.getElementById("demosEmail");
+  demosLink.href = `mailto:${EMAILS.demos}`;
   demosLink.textContent = EMAILS.demos;
 
   const bookingLink = document.getElementById("bookingEmail");
-  bookingLink.href        = `mailto:${EMAILS.booking}`;
+  bookingLink.href = `mailto:${EMAILS.booking}`;
   bookingLink.textContent = EMAILS.booking;
 
-  document.getElementById("spotifyEmbed").src    = EMBEDS.spotify;
+  /* === EMBEDS === */
+  document.getElementById("spotifyEmbed").src = EMBEDS.spotify;
   document.getElementById("soundcloudEmbed").src = EMBEDS.soundcloud;
 
-  document.getElementById("bookingAlink").textContent  = TEXTS.booking;
-  document.getElementById("releasesAlink").textContent = TEXTS.releases;
+  /* === TEXTES === */
+  bookingA.textContent = TEXTS.booking;
+  releasesA.textContent = TEXTS.releases;
   document.getElementById("nextShowLabel").textContent = TEXTS.nextShowLabel;
-  document.getElementById("demosTitle").textContent    = TEXTS.demos;
-  document.getElementById("bookingTitle").textContent  = TEXTS.bookingTitle;
-  document.getElementById("socialsTitle").textContent  = TEXTS.socials;
+  document.getElementById("demosTitle").textContent = TEXTS.demos;
+  document.getElementById("bookingTitle").textContent = TEXTS.bookingTitle;
+  document.getElementById("socialsTitle").textContent = TEXTS.socials;
 
-  // --- Variables CSS ---
+  /* === COULEURS CSS === */
   root.style.setProperty("--bandeau-from", COLORS.bandeauFrom);
-  root.style.setProperty("--bandeau-to",   COLORS.bandeauTo);
+  root.style.setProperty("--bandeau-to", COLORS.bandeauTo);
 }
 
 applyConstants();
 
-// --- État de la navigation ---
-let releasesIsActive = false;
-let bookingIsActive  = false;
+/* =========================
+   ETAT NAVIGATION
+========================= */
 
-// --- Effet spotlight (curseur) — desktop uniquement ---
+let releasesIsActive = false;
+let bookingIsActive = false;
+
+/* =========================
+   SPOTLIGHT + PARALLAXE
+========================= */
+
 const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
 if (!isTouchDevice) {
+
   root.addEventListener("mousemove", (e) => {
     root.style.setProperty("--x", e.clientX + "px");
     root.style.setProperty("--y", e.clientY + "px");
   });
-}
 
-// --- Effet parallaxe sur l'image de fond (desktop uniquement) ---
-if (!isTouchDevice) {
   document.addEventListener("mousemove", (e) => {
-    const moveX = (e.clientX / window.innerWidth  - 0.5) * 35;
+    const moveX = (e.clientX / window.innerWidth - 0.5) * 35;
     const moveY = (e.clientY / window.innerHeight - 0.5) * 35;
     backgroundImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
   });
 }
 
-// --- Séquence d'intro : Lights Off → Rave On ---
+/* =========================
+   INTRO ANIMATION
+========================= */
+
 raveOnText.style.display = "none";
 lightsOffText.classList.add("simpleFadePlusTransformAnim");
 
@@ -91,14 +135,11 @@ setTimeout(() => {
 }, TIMINGS.buttonAppear);
 
 boutonLightsOff.addEventListener("click", () => {
-  // Animations de sortie (Lights Off)
-  lightsOffText.classList.remove("simpleFadePlusTransformAnim");
-  lightsOffText.classList.add("fadeOutAnimation");
-  boutonLightsOff.classList.remove("fadeUpAnimation");
-  boutonLightsOff.classList.add("fadeOuAndSkewtAnimation");
+
+  lightsOffText.classList.replace("simpleFadePlusTransformAnim", "fadeOutAnimation");
+  boutonLightsOff.classList.replace("fadeUpAnimation", "fadeOuAndSkewtAnimation");
   lightBackground.classList.add("simpleFadeReverseAnimation");
 
-  // Apparition du texte Rave On
   setTimeout(() => {
     raveOnText.style.display = "inline-block";
     raveOnText.classList.add("fadeInAnimation");
@@ -106,12 +147,11 @@ boutonLightsOff.addEventListener("click", () => {
     releasesDiv.style.zIndex = 3;
   }, TIMINGS.raveOnTextAppear);
 
-  // Masquage des éléments Lights Off + apparition des éléments Rave On
   setTimeout(() => {
     lightsOffText.style.display = "none";
     boutonLightsOff.style.display = "none";
 
-    [raveonLogo, bookingText, releasesText].forEach((el) => {
+    [raveonLogo, bookingText, releasesText].forEach(el => {
       el.style.display = "inline-block";
       el.classList.add("simpleFadeAnimation");
     });
@@ -119,74 +159,77 @@ boutonLightsOff.addEventListener("click", () => {
     lightsOffDiv.classList.add("opacityToZeroAnimation");
   }, TIMINGS.lightsOffHide);
 
-  // Pop-up événement
   setTimeout(() => {
     popUpEvent.classList.add("popUpAnimation");
   }, TIMINGS.popUpAppear);
 
-  // Suppression finale du div Lights Off
   setTimeout(() => {
     lightsOffDiv.style.display = "none";
   }, TIMINGS.lightsOffRemove);
 });
 
-// --- Helpers navigation ---
+/* =========================
+   NAVIGATION PANNEAUX
+========================= */
 
-/** Active ou désactive l'effet de flou sur les éléments de fond */
 function setBlur(active) {
   RaveMiddlePart.classList.toggle("blurEffect", active);
   backgroundImage.classList.toggle("blurEffect", active);
   popUpEvent.classList.toggle("blurEffect", active);
-  popUpEvent.style.pointerEvents = active ? "none" : "";
 }
 
-/** Ouvre/ferme le panneau Releases */
 function toggleReleases(forceClose = false) {
+
   if (forceClose || releasesIsActive) {
+
     releasesIsActive = false;
     releasesA.style.color = "";
     releasesA.style.fontSize = "";
-    bookingA.style.pointerEvents = "";
     setBlur(false);
-    spotifySoundcloud.forEach((el) => {
-      el.classList.remove("fadeUpAndNotSkewAnim");
-      el.classList.add("fadeUpAndNotSkewAnimReverse");
+
+    spotifySoundcloud.forEach(el => {
+      el.classList.replace("fadeUpAndNotSkewAnim", "fadeUpAndNotSkewAnimReverse");
     });
+
   } else {
+
     releasesIsActive = true;
-    releasesA.style.color    = ACTIVE_LINK_STYLE.color;
+    releasesA.style.color = ACTIVE_LINK_STYLE.color;
     releasesA.style.fontSize = ACTIVE_LINK_STYLE.fontSize;
     setBlur(true);
-    spotifySoundcloud.forEach((el) => {
-      el.classList.remove("fadeUpAndNotSkewAnimReverse");
-      el.classList.add("fadeUpAndNotSkewAnim");
+
+    spotifySoundcloud.forEach(el => {
+      el.classList.replace("fadeUpAndNotSkewAnimReverse", "fadeUpAndNotSkewAnim");
     });
   }
 }
 
-/** Ouvre/ferme le panneau Booking */
 function toggleBooking(forceClose = false) {
+
   if (forceClose || bookingIsActive) {
+
     bookingIsActive = false;
     bookingA.style.color = "";
     bookingA.style.fontSize = "";
-    releasesA.style.pointerEvents = "";
-    BookingPart.style.pointerEvents = "";
     setBlur(false);
-    BookingPart.classList.remove("bookingAnim");
-    BookingPart.classList.add("bookingAnimReverse");
+
+    BookingPart.classList.replace("bookingAnim", "bookingAnimReverse");
+
   } else {
+
     bookingIsActive = true;
-    bookingA.style.color    = ACTIVE_LINK_STYLE.color;
+    bookingA.style.color = ACTIVE_LINK_STYLE.color;
     bookingA.style.fontSize = ACTIVE_LINK_STYLE.fontSize;
-    BookingPart.style.pointerEvents = "all";
     setBlur(true);
-    BookingPart.classList.remove("bookingAnimReverse");
-    BookingPart.classList.add("bookingAnim");
+
+    BookingPart.classList.replace("bookingAnimReverse", "bookingAnim");
   }
 }
 
-// --- Écouteurs de navigation ---
+/* =========================
+   EVENTS NAVIGATION
+========================= */
+
 releasesText.addEventListener("click", () => {
   if (bookingIsActive) toggleBooking(true);
   toggleReleases();
@@ -197,8 +240,7 @@ bookingText.addEventListener("click", () => {
   toggleBooking();
 });
 
-// Clic sur le logo = ferme tout
 raveonLogo.addEventListener("click", () => {
   if (releasesIsActive) toggleReleases(true);
-  if (bookingIsActive)  toggleBooking(true);
+  if (bookingIsActive) toggleBooking(true);
 });
