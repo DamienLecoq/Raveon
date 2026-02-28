@@ -180,6 +180,8 @@ function setBlur(active) {
   RaveMiddlePart.classList.toggle("blurEffect", active);
   backgroundImage.classList.toggle("blurEffect", active);
   popUpEvent.classList.toggle("blurEffect", active);
+
+  popUpEvent.style.pointerEvents = active ? "none" : "";
 }
 
 function toggleReleases(forceClose = false) {
@@ -190,6 +192,8 @@ function toggleReleases(forceClose = false) {
     releasesA.style.color = "";
     releasesA.style.fontSize = "";
     setBlur(false);
+
+    releasesDiv.style.pointerEvents = "none";
 
     spotifySoundcloud.forEach(el => {
       el.classList.remove("fadeUpAndNotSkewAnim");
@@ -202,6 +206,8 @@ function toggleReleases(forceClose = false) {
     releasesA.style.color = ACTIVE_LINK_STYLE.color;
     releasesA.style.fontSize = ACTIVE_LINK_STYLE.fontSize;
     setBlur(true);
+
+    releasesDiv.style.pointerEvents = "all";
 
     spotifySoundcloud.forEach(el => {
       el.classList.remove("fadeUpAndNotSkewAnimReverse");
@@ -222,6 +228,8 @@ function toggleBooking(forceClose = false) {
     BookingPart.classList.remove("bookingAnim");
     BookingPart.classList.add("bookingAnimReverse");
 
+    BookingPart.style.pointerEvents = "none";
+
   } else {
 
     bookingIsActive = true;
@@ -231,6 +239,8 @@ function toggleBooking(forceClose = false) {
 
     BookingPart.classList.remove("bookingAnimReverse");
     BookingPart.classList.add("bookingAnim");
+
+    BookingPart.style.pointerEvents = "all";
   }
 }
 
