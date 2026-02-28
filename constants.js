@@ -7,12 +7,12 @@ export const IMAGES = {
   lightsOffText:"Images/LIGHTSOFF.png",
   raveOnText:   "Images/RaveOnText.png",
   raveonLogo:   "Images/RaveonLogo.png",
-  nextShowFlyer:"Images/LightsOff3.png",
+  nextShowFlyer:"Images/DESTINY_3_shotgun_wb614f.png",
 };
 
 // --- Liens externes ---
 export const LINKS = {
-  nextShow:  "https://shotgun.live/events/lights-off-rave-on-3",
+  nextShow:  "https://shotgun.live/fr/events/destiny-3",
   instagram: "https://www.instagram.com/itsraveon/?utm_source=ig_web_button_share_sheet",
   spotify:   "https://open.spotify.com/artist/09CHL623Gn4FFPy0dHv4XC?si=qx0AKcrwSzaKC5wkc8lvpQ",
   tiktok:    "https://www.tiktok.com/@itsraveon?_t=8ppVCX5lt8S&_r=1",
@@ -60,8 +60,8 @@ export const TIMINGS = {
 
 // --- Couleurs du bandeau de la pop-up ---
 export const COLORS = {
-  bandeauFrom: "rgb(201, 0, 0)",
-  bandeauTo:   "rgb(65, 0, 0)",
+  bandeauFrom: "rgb(3, 55, 127)",
+  bandeauTo:   "rgb(3, 40, 75)",
 };
 
 // --- Style pour les liens ---
