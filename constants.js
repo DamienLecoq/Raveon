@@ -21,7 +21,7 @@ export const LINKS = {
 // --- Emails ---
 export const EMAILS = {
   demos:   "itsraveon@gmail.com",
-  booking: "bookingraveon@gmail.com",
+  booking: "marc@itsraveon.com",
 };
 
 // --- Embeds ---
