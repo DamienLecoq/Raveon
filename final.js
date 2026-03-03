@@ -193,8 +193,6 @@ function toggleReleases(forceClose = false) {
     releasesA.style.fontSize = "";
     setBlur(false);
 
-    releasesDiv.style.pointerEvents = "none";
-
     spotifySoundcloud.forEach(el => {
       el.classList.remove("fadeUpAndNotSkewAnim");
       el.classList.add("fadeUpAndNotSkewAnimReverse");
@@ -206,8 +204,6 @@ function toggleReleases(forceClose = false) {
     releasesA.style.color = ACTIVE_LINK_STYLE.color;
     releasesA.style.fontSize = ACTIVE_LINK_STYLE.fontSize;
     setBlur(true);
-
-    releasesDiv.style.pointerEvents = "all";
 
     spotifySoundcloud.forEach(el => {
       el.classList.remove("fadeUpAndNotSkewAnimReverse");
