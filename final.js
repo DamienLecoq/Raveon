@@ -258,3 +258,20 @@ raveonLogo.addEventListener("click", () => {
   if (releasesIsActive) toggleReleases(true);
   if (bookingIsActive) toggleBooking(true);
 });
+
+/* =========================
+   FERMETURE AU CLIC EXTÉRIEUR
+========================= */
+
+document.addEventListener("click", (e) => {
+  if (releasesIsActive &&
+      !releasesDiv.contains(e.target) &&
+      !releasesText.contains(e.target)) {
+    toggleReleases(true);
+  }
+  if (bookingIsActive &&
+      !BookingPart.contains(e.target) &&
+      !bookingText.contains(e.target)) {
+    toggleBooking(true);
+  }
+});
